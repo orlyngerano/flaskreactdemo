@@ -4,11 +4,16 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from marshmallow import post_load, fields
 
-
+import os
+EXEC_DIR = os.getcwd()
+os.chdir(os.path.dirname(__file__))
+DB_PATH = "sqlite:///{0}/app.db".format(os.getcwd())
+os.chdir(EXEC_DIR)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_PATH
 db = SQLAlchemy(app)
+
 api = Api(app)
 ma = Marshmallow(app)
 
@@ -33,6 +38,9 @@ class UserSchema(ma.ModelSchema):
 
 users_schema = UserSchema(many=True)
 user_schema = UserSchema()
+
+
+db.create_all()
 
 class Profile(Resource):
     def get(self, id):
