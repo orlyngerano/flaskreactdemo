@@ -5,10 +5,15 @@ from flask_marshmallow import Marshmallow
 from marshmallow import post_load, fields
 
 import os
-EXEC_DIR = os.getcwd()
-os.chdir(os.path.dirname(__file__))
-DB_PATH = "sqlite:///{0}/app.db".format(os.getcwd())
-os.chdir(EXEC_DIR)
+DB_DIR = os.getcwd()
+file_dir = os.path.dirname(__file__)
+if file_dir:
+    EXEC_DIR = DB_DIR
+    os.chdir(file_dir)
+    DB_DIR = os.getcwd()
+    os.chdir(EXEC_DIR)
+
+DB_PATH = "sqlite:///{0}/app.db".format(DB_DIR)
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_PATH
