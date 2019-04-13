@@ -1,13 +1,13 @@
 aniso8601==3.0.0
 click==6.7
-Flask==0.12.2
+Flask==0.12.3
 flask-marshmallow==0.8.0
 Flask-RESTful==0.3.6
 Flask-SQLAlchemy==2.3.2
 itsdangerous==0.24
 Jinja2==2.10.1
 MarkupSafe==1.0
-marshmallow==2.15.0
+marshmallow==2.15.1
 marshmallow-sqlalchemy==0.13.2
 pytz==2018.3
 six==1.11.0
